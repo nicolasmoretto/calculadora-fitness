@@ -1,0 +1,124 @@
+#include <stdio.h>
+#include <locale.h>
+#include <stdlib.h>
+
+
+ float protein, gordura, carbo, precarbo, kcal, peso, calculo;
+ int sexo,idade, altura,atividade, objetivo, treino, oque;
+
+	void calorias(){
+	printf("\n Vamos calcular seu gasto calórico diario:\n");
+	printf("Vou precisar de alguns dados para isso... por favor os insira abaixo\n");
+	printf("Digite a sua idade: \n");
+	scanf("%d", &idade);
+	printf("Digite o seu peso: \n");
+	scanf("%f", &peso);
+	printf("Digite a sua altura: \n");
+	scanf("%d", &altura);
+	printf("Qual seu sexo? Digite 1 para masculino ou 9 para feminino.\n");
+	scanf("%d", &sexo);
+	switch(sexo)
+	{
+		case 1:
+			calculo = ((10*peso) + (6.25*altura) - (5*idade) +5);		
+		case 9:
+			calculo = ((10*peso) + (6.25*altura) - (5*idade) -161);
+		default:
+			system("cls");
+			printf("POR FAVOR SELECIONE UMA OPÇÃO VALIDA \n\n");
+			main();
+	}
+	printf("Qual seu nivel de atividade?: \n");
+	printf("Digite 1, caso você passe a maior parte do dia parado (sedentario); \n");
+	printf("Digite 2, caso você faça exercício leve (2x por semana); \n ");
+	printf("Digite 3, caso você faça exercício moderado (3 a 5 vezes na semana; \n)");	
+	printf("Digite 4, caso você faça exercício pesado (6 a 7 vezes por semana; \n)");
+	printf("Digite 5, caso você faça exercício a maior parte do dia (trabalhos como garçom, carteiro e etc... \n)");
+	scanf("%d", &atividade);
+	switch (atividade)
+	{
+		case 1:
+			calculo = (calculo *1.20);
+			printf("Seu gasto diario é de mais ou menos de: %.0f", calculo);
+		case 2:
+			calculo = (calculo *1.375);
+			printf("Seu gasto diario é de mais ou menos de: %.0f", calculo);			
+		case 3:
+			calculo = (calculo *1.55);
+			printf("Seu gasto diario é de mais ou menos de: %.0f", calculo);
+			break;		
+		case 4:
+			calculo = (calculo *1.725);
+			printf("Seu gasto diario é de mais ou menos de: %.0f", calculo);
+			break;
+		case 5:
+			calculo = (calculo *1.9);
+			printf("Seu gasto diario é de mais ou menos de: %.0f", calculo);
+			break;
+		default:
+			system("cls");
+			printf("POR FAVOR SELECIONE UMA OPÇÃO VALIDA \n\n");
+			main();
+	}
+	printf("\nQual seu objetivo? Digite 1 para GANHAR MUSCULO ou 9 para PERDER GORDURA. \n");
+	scanf("%d",&objetivo);
+	printf("Se você treina a menos de um ano digite 1. \nCaso treine a mais de um ano, digite 9 \n");
+	scanf("%d",&treino);
+	switch(treino)
+	{
+		case 1:
+			printf("Para ganhar massa voce precisa ingerir:\n ");
+			protein = peso*2.5;
+			gordura  = peso*0.8;
+			precarbo = (calculo + 400) - ((protein*4)+(gordura*9));
+			carbo =  precarbo/4;
+			kcal = (calculo + 400);
+			printf("%.0f gramas de proteina \n", protein);
+			printf("%.0f gramas de gordura \n", gordura);
+			printf("%.0f gramas de carboidrato \n", carbo);
+			printf("Você tem que ingerir %.0f calorias por dia  \n", kcal);
+			break;
+			
+		case 9:
+			printf("Para ganhar massa voce precisa ingerir:\n ");
+			protein = peso*2.5;
+			gordura  = peso*0.8;
+			precarbo = (calculo + 200) - ((protein*4)+(gordura*9));
+			carbo =  precarbo/4;
+			kcal = (calculo + 200);
+			printf("%.0f gramas de proteina \n", protein);
+			printf("%.0f gramas de gordura \n", gordura);
+			printf("%.0f gramas de carboidrato \n", carbo);
+			printf("Você tem que ingerir %.0f por dia com base na fórmula Mifflin-St Jeor, que é amplamente conhecida por ser a mais precisa \n", kcal);
+			break;
+		
+		default:
+			printf("Opção invalida, por favor, responda novamente a pergunta:");
+			calorias();
+	}
+	printf("(\n atividades é sempre 1 a menos \n)");
+}
+
+ main (void){
+	setlocale(LC_ALL,"Portuguese");
+	printf(" BEM VINDO \nOque você quer fazer hoje? \nSelecione 1 para calcular quantas calorias você deve consumir no dia \nSelecione 9, para calcular seu indice de gordura corporal(BF). \n");
+	scanf("%d",&oque);
+	switch(oque)
+	{
+		case 1:
+			calorias();
+			printf(" Para informações mais detalhadas entre no site da TDEE \n https://tdeecalculator.net \n");
+			break;
+		case 9:	
+			printf(" AINDA NÃO ESTÁ PRONTO \n");
+			break;
+		default:
+			system("cls");
+			printf("POR FAVOR SELECIONE UMA OPÇÃO VALIDA \n\n");
+			main();
+	}
+}
+	
+//Caso você tenha se perguntado o poque usei variavel float e depois na hora do printf não mostrei os decimais.
+//Foi pelo fato de se aproximar o maximo possível do valor exato dos resultados sem complicar a vida de quem está lendo. :)
+	
